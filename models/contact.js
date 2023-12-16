@@ -30,7 +30,7 @@ const updateSchema = Joi.object({
   .min(1)
   .messages({ "object.min": "missing fields" });
 
-const updateFavouriteSchema = Joi.object({
+const updateFavoriteSchema = Joi.object({
   favorite: Joi.boolean()
     .required()
     .messages({ "any.required": "missing field favorite" }),
@@ -39,7 +39,7 @@ const updateFavouriteSchema = Joi.object({
 const schemas = {
   addSchema,
   updateSchema,
-  updateFavouriteSchema,
+  updateFavoriteSchema,
 };
 
 // ---Mongoose Schema --------------------------------
