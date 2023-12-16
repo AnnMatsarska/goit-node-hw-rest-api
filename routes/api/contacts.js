@@ -8,16 +8,16 @@ const ctrl = require("../../controllers/contacts");
 
 router.get("/", ctrl.getAllContacts);
 
-router.get("/:contactId", ctrl.getContactById);
+// router.get("/:contactId", ctrl.getContactById);
 
-router.post("/", validateBody(schemas.addSchema), ctrl.addContact);
+// router.post("/", validateBody(schemas.addSchema), ctrl.addContact);
 
-router.delete("/:contactId", ctrl.deleteContact);
+// router.delete("/:contactId", ctrl.deleteContact);
 
-router.put(
-  "/:contactId",
-  validateBody(schemas.updateSchema),
-  ctrl.updateContact
-);
+// router.put(
+//   "/:contactId",
+//   validateBody(schemas.updateSchema),
+//   ctrl.updateContact
+// );
 
 module.exports = router;
