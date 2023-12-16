@@ -15,10 +15,10 @@ const getAllContacts = async (req, res) => {
 //   res.json(data);
 // };
 
-// const addContact = async (req, res) => {
-//   const contactData = await contacts.addContact(req.body);
-//   res.status(201).json(contactData);
-// };
+const addContact = async (req, res) => {
+  const contactData = await Book.create(req.body);
+  res.status(201).json(contactData);
+};
 
 // const deleteContact = async (req, res) => {
 //   const { contactId } = req.params;
@@ -41,7 +41,7 @@ const getAllContacts = async (req, res) => {
 module.exports = {
   getAllContacts: ctrlWrapper(getAllContacts),
   // getContactById: ctrlWrapper(getContactById),
-  // addContact: ctrlWrapper(addContact),
+  addContact: ctrlWrapper(addContact),
   // deleteContact: ctrlWrapper(deleteContact),
   // updateContact: ctrlWrapper(updateContact),
 };
