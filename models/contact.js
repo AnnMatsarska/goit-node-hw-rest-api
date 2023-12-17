@@ -18,7 +18,7 @@ const addSchema = Joi.object({
     .min(8)
     .required()
     .messages({ "any.required": "missing required phone field" }),
-  favorite: Joi.boolean().required(),
+  favorite: Joi.boolean(),
 });
 
 const updateSchema = Joi.object({
