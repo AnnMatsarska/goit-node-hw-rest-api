@@ -16,9 +16,17 @@ const loginSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
+const emailSchema = Joi.object({
+  email: Joi.string()
+    .email()
+    .required()
+    .messages({ "any.required": "missing required email field" }),
+});
+
 const schemas = {
   registerSchema,
   loginSchema,
+  emailSchema,
 };
 
 // ---Mongoose Schema --------------------------------
