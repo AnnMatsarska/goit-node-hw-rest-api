@@ -7,8 +7,8 @@ const Jimp = require("jimp");
 const { nanoid } = require("nanoid");
 
 const { User } = require("../models/user");
-const { HttpError, ctrlWrapper } = require("../helpers");
-const { SECRET_KEY } = process.env;
+const { HttpError, ctrlWrapper, sendEmail } = require("../helpers");
+const { SECRET_KEY, BASE_URL } = process.env;
 
 const avatarDir = path.join(__dirname, "../", "public", "avatars");
 
@@ -18,6 +18,10 @@ const register = async (req, res) => {
 
   if (user) {
     throw HttpError(409, "Email in use");
+  }
+
+  if (!user.verify) {
+    throw HttpError(401, "Email not verified");
   }
 
   const hashPassword = await bcrypt.hash(password, 10);
@@ -30,6 +34,15 @@ const register = async (req, res) => {
     avatarURL,
     verificationToken,
   });
+
+  const verifyEmail = {
+    to: email,
+    subject: "Verify email",
+    html: `<a target="_blanck" href="${BASE_URL}/api/users/verify/${verificationToken}">Click here to verify email</a>`,
+  };
+
+  await sendEmail(verifyEmail);
+
   res.status(201).json({
     user: {
       email: newUser.email,
